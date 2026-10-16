@@ -22,9 +22,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cat .bootstrap/payload-*.b64 | base64 --decode > /tmp/mila-kadima.zip
+          cat .bootstrap/payload-*.b64 | base64 --decode > /tmp/mila-kadima.tar.xz
           mkdir -p /tmp/mila-kadima
-          unzip -oq /tmp/mila-kadima.zip -d /tmp/mila-kadima
+          tar -xJf /tmp/mila-kadima.tar.xz -C /tmp/mila-kadima
           rsync -a /tmp/mila-kadima/ ./
           rm -rf .bootstrap
           rm -f .github/workflows/bootstrap-build.yml
